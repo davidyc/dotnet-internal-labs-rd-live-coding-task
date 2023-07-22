@@ -1,0 +1,112 @@
+using System;
+
+// Common interface for all workers
+public interface IWorker
+{
+    void Work();
+}
+
+// Interface for tracking time
+public interface ITimeTracker
+{
+    void ClockIn();
+    void ClockOut();
+    TimeSpan GetWorkedHours();
+}
+
+// Interface for workers with overtime calculations
+public interface ICalculateOvertime
+{
+    void CalculateOvertime();
+}
+
+// Employee class implementing IWorker and ITimeTracker interfaces
+public class Employee : IWorker, ITimeTracker
+{
+    private DateTime clockInTime;
+    private DateTime clockOutTime;
+
+    public void ClockIn()
+    {
+        clockInTime = DateTime.Now;
+        Console.WriteLine("Employee clocked in.");
+    }
+
+    public void ClockOut()
+    {
+        clockOutTime = DateTime.Now;
+        Console.WriteLine("Employee clocked out.");
+    }
+
+    public TimeSpan GetWorkedHours()
+    {
+        return clockOutTime - clockInTime;
+    }
+
+    public void Work()
+    {
+        Console.WriteLine("Employee is working.");
+    }
+}
+
+// Supervisor class implementing IWorker, ITimeTracker, and ICalculateOvertime interfaces
+public class Supervisor : IWorker, ITimeTracker, ICalculateOvertime
+{
+    private DateTime clockInTime;
+    private DateTime clockOutTime;
+
+    public void ClockIn()
+    {
+        clockInTime = DateTime.Now;
+        Console.WriteLine("Supervisor clocked in.");
+    }
+
+    public void ClockOut()
+    {
+        clockOutTime = DateTime.Now;
+        Console.WriteLine("Supervisor clocked out.");
+    }
+
+    public TimeSpan GetWorkedHours()
+    {
+        return clockOutTime - clockInTime;
+    }
+
+    public void Work()
+    {
+        Console.WriteLine("Supervisor is working.");
+    }
+
+    public void CalculateOvertime()
+    {
+        Console.WriteLine("Supervisor is calculating overtime.");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // Create instances of Employee and Supervisor and demonstrate their functionality
+        IWorker employee = new Employee();
+        ITimeTracker employeeTimeTracker = employee as ITimeTracker;
+
+        employeeTimeTracker.ClockIn();
+        employee.Work();
+        employeeTimeTracker.ClockOut();
+        TimeSpan employeeWorkedHours = employeeTimeTracker.GetWorkedHours();
+        Console.WriteLine($"Employee worked hours: {employeeWorkedHours}");
+
+        IWorker supervisor = new Supervisor();
+        ITimeTracker supervisorTimeTracker = supervisor as ITimeTracker;
+        ICalculateOvertime supervisorOvertimeCalculator = supervisor as ICalculateOvertime;
+
+        supervisorTimeTracker.ClockIn();
+        supervisor.Work();
+        supervisorTimeTracker.ClockOut();
+        TimeSpan supervisorWorkedHours = supervisorTimeTracker.GetWorkedHours();
+        Console.WriteLine($"Supervisor worked hours: {supervisorWorkedHours}");
+
+        supervisorOvertimeCalculator.CalculateOvertime();
+    }
+}

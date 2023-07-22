@@ -1,0 +1,53 @@
+using System;
+
+public class Product
+{
+    private int productId;
+    private string name;
+    private double price;
+
+    public Product(string name, double price)
+    {
+        this.name = name;
+        this.price = price;
+    }
+
+    public int GetProductId()
+    {
+        return productId;
+    }
+
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Product ID: {productId}, Name: {name}, Price: ${price}");
+    }
+
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+       Dictionary<int, Product> productsDictionary = new Dictionary<int, Product>();
+
+        Product product1 = new Product("Laptop", 1200.99);
+        Product product2 = new Product("Phone", 699.99);
+        Product product3 = new Product("Headphones", 99.99); 
+
+        productsDictionary.Add(product1.GetProductId(), product1);
+        productsDictionary.Add(product2.GetProductId(), product2);
+        productsDictionary.Add(product3.GetProductId(), product3);
+
+        foreach (var product in productsDictionary.Values)
+        {
+            product.DisplayInfo();
+        }
+
+        int totalProducts = Product.GetTotalProducts();
+        Console.WriteLine($"Total products created: {totalProducts}");
+
+
+    }
+}
+
+//Хочу что я мог добавлять в словоть не парясь о том что id  может повториться

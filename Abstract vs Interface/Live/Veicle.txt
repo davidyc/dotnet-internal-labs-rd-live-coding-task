@@ -1,0 +1,123 @@
+Задание:
+Создайте два класса: Car (Автомобиль) и Bicycle (Велосипед), реализующих интерфейс IVehicle (Транспортное средство). Интерфейс IVehicle определяет три общих метода для всех транспортных средств: Start (Запустить), Stop (Остановить) и Accelerate (Ускориться).
+
+1. Класс Car (Автомобиль):
+   - Реализуйте методы Start, Stop и Accelerate для предоставления соответствующего функционала автомобилю.
+   - Добавьте два дополнительных метода: EngageAutopilot (Включить автопилот) и DisengageAutopilot (Выключить автопилот), специфичных для класса Car.
+
+2. Класс Bicycle (Велосипед):
+   - Реализуйте методы Start, Stop и Accelerate для предоставления соответствующего функционала велосипеду.
+   - Добавьте два дополнительных метода: LoadCargo (Загрузить груз) и UnloadCargo (Разгрузить груз), специфичных для класса Bicycle.
+
+В методе Main:
+- Создайте экземпляры классов Car и Bicycle и продемонстрируйте использование каждого из них.
+- Для экземпляра класса Car используйте дополнительные методы EngageAutopilot и DisengageAutopilot для показа функционала, уникального для класса Car.
+- Для экземпляра класса Bicycle используйте дополнительные методы LoadCargo и UnloadCargo для демонстрации функционала, уникального для класса Bicycle.
+
+Обратите внимание, как интерфейс предоставляет общий контракт для классов с различным функционалом, и как дополнительные методы в каждом классе могут быть использованы при работе с их конкретными экземплярами.
+
+
+
+
+
+
+using System;
+
+public interface IVehicle
+{
+    void Start();
+    void Stop();
+    void Accelerate(int speed);
+}
+
+public class Car : IVehicle
+{
+    public void Start()
+    {
+        Console.WriteLine("Vehicle is starting.");
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine("Vehicle is stopping.");
+    }
+
+    public void Accelerate(int speed)
+    {
+        Console.WriteLine($"Vehicle is accelerating to {speed} km/h.");
+    }
+
+    public void EngageAutopilot()
+    {
+        Console.WriteLine("Vehicle has engaged the autopilot.");
+    }
+
+    public void DisengageAutopilot()
+    {
+        Console.WriteLine("Vehicle has disengaged the autopilot.");
+    }
+}
+
+public class Bicycle : IVehicle
+{
+    public void Start()
+    {
+        Console.WriteLine("Vehicle is starting.");
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine("Vehicle is stopping.");
+    }
+
+    public void Accelerate(int speed)
+    {
+        Console.WriteLine($"Vehicle is accelerating to {speed} km/h.");
+    }
+
+    public void LoadCargo(int weight)
+    {
+        Console.WriteLine($"Vehicle is loaded with cargo weighing {weight} kg.");
+    }
+
+    public void UnloadCargo(int weight)
+    {
+        Console.WriteLine($"Vehicle is unloaded from cargo weighing {weight} kg.");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        IVehicle car = new Car();
+        IVehicle bicycle = new Bicycle();
+
+        if (car is Car carVehicle)
+        {
+            carVehicle.EngageAutopilot();
+            carVehicle.Accelerate(80);
+            carVehicle.DisengageAutopilot();
+        }
+        else
+        {
+            car.Start();
+            car.Accelerate(80);
+            car.Stop();
+        }
+
+        if (bicycle is Bicycle loadableBicycle)
+        {
+            loadableBicycle.LoadCargo(10);
+            loadableBicycle.Accelerate(20);
+            loadableBicycle.UnloadCargo(5);
+            loadableBicycle.Accelerate(25);
+        }
+        else
+        {
+            bicycle.Start();
+            bicycle.Accelerate(20);
+            bicycle.Stop();
+        }
+    }
+}

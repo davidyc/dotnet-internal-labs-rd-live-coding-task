@@ -1,0 +1,38 @@
+using System;
+
+public struct Leg
+{
+    public int Step;
+
+    public Leg(int step = 0)
+    {
+        Step = step;
+    }
+}
+
+public class Program
+{
+    public static void Walk(Leg leg1, Leg leg2)
+    {
+        leg1.Step++;
+        leg2.Step++;
+    }
+
+    public static void Main(string[] args)
+    {
+        Leg leg1 = new Leg();
+        Leg leg2 = new Leg();
+
+        while (leg1.Step + leg2.Step < 50)
+        {
+            Console.WriteLine("A step was taken");
+
+            Walk(leg1, leg2);
+        }
+
+        Console.WriteLine("Sum of Steps in leg1 and leg2 is now 50 or more. Exiting the loop.");
+    }
+}
+
+
+//Сделал себе программу для учета шагов что бы после 50 шагов включалась, что то не так....

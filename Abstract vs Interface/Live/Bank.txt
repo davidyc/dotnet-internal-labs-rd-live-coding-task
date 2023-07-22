@@ -1,0 +1,79 @@
+using System;
+
+public interface IBankAccount
+{
+    void Deposit(double amount);
+    void Withdraw(double amount);
+    double GetBalance();
+}
+
+public class SavingAccount : IBankAccount
+{
+    private double balance;
+
+    public void Deposit(double amount)
+    {
+        // Implement the Deposit method for the SavingAccount class
+    }
+
+    public void Withdraw(double amount)
+    {
+        // Implement the Withdraw method for the SavingAccount class
+    }
+
+    public double GetBalance()
+    {
+        // Implement the GetBalance method for the SavingAccount class
+        return balance;
+    }
+
+    public void CalculateInterest()
+    {
+        // Implement the CalculateInterest method for the SavingAccount class
+    }
+}
+
+public class CheckingAccount : IBankAccount
+{
+    private double balance;
+
+    public void Deposit(double amount)
+    {
+        // Implement the Deposit method for the CheckingAccount class
+    }
+
+    public void Withdraw(double amount)
+    {
+        // Implement the Withdraw method for the CheckingAccount class
+    }
+
+    public double GetBalance()
+    {
+        // Implement the GetBalance method for the CheckingAccount class
+        return balance;
+    }
+
+    public void DeductFees()
+    {
+        // Implement the DeductFees method for the CheckingAccount class
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // Create instances of SavingAccount and CheckingAccount and demonstrate their functionality
+        IBankAccount savingAccount = new SavingAccount();
+        savingAccount.Deposit(1000);
+        savingAccount.Withdraw(200);
+        double savingBalance = savingAccount.GetBalance();
+        Console.WriteLine($"Saving Account balance: {savingBalance}");
+
+        IBankAccount checkingAccount = new CheckingAccount();
+        checkingAccount.Deposit(500);
+        checkingAccount.Withdraw(100);
+        double checkingBalance = checkingAccount.GetBalance();
+        Console.WriteLine($"Checking Account balance: {checkingBalance}");
+    }
+}
