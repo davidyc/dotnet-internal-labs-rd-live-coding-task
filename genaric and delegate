@@ -1,1 +1,114 @@
+class Calculator
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+
+    public int Subtract(int a, int b)
+    {
+        return a - b;
+    }
+
+    public int Multiply(int a, int b)
+    {
+        return a * b;
+    }
+
+    public int Divide(int a, int b)
+    {
+        if (b == 0)
+        {
+            throw new ArgumentException("Division by zero is not allowed.");
+        }
+
+        return a / b;
+    }
+
+    public float Add(float a, float b)
+    {
+        return a + b;
+    }
+
+    public float Subtract(float a, float b)
+    {
+        return a - b;
+    }
+
+    public float Multiply(float a, float b)
+    {
+        return a * b;
+    }
+
+    public float Divide(float a, float b)
+    {
+        if (b == 0)
+        {
+            throw new ArgumentException("Division by zero is not allowed.");
+        }
+
+        return a / b;
+    }
+
+    public double Add(double a, double b)
+    {
+        return a + b;
+    }
+
+    public double Subtract(double a, double b)
+    {
+        return a - b;
+    }
+
+    public double Multiply(double a, double b)
+    {
+        return a * b;
+    }
+
+    public double Divide(double a, double b)
+    {
+        if (b == 0)
+        {
+            throw new ArgumentException("Division by zero is not allowed.");
+        }
+
+        return a / b;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Calculator calculator = new Calculator();
+
+        // For integers (int)
+        int num1 = 10;
+        int num2 = 5;
+        int sumInt = calculator.Add(num1, num2);
+        int differenceInt = calculator.Subtract(num1, num2);
+        int productInt = calculator.Multiply(num1, num2);
+        int quotientInt = calculator.Divide(num1, num2);
+
+        // For floating-point numbers (float)
+        float num3 = 10.5f;
+        float num4 = 2.5f;
+        float sumFloat = calculator.Add(num3, num4);
+        float differenceFloat = calculator.Subtract(num3, num4);
+        float productFloat = calculator.Multiply(num3, num4);
+        float quotientFloat = calculator.Divide(num3, num4);
+
+        // For double-precision floating-point numbers (double)
+        double num5 = 25.75;
+        double num6 = 5.5;
+        double sumDouble = calculator.Add(num5, num6);
+        double differenceDouble = calculator.Subtract(num5, num6);
+        double productDouble = calculator.Multiply(num5, num6);
+        double quotientDouble = calculator.Divide(num5, num6);
+
+        Console.WriteLine($"Integer calculations: Sum: {sumInt}, Difference: {differenceInt}, Product: {productInt}, Quotient: {quotientInt}");
+        Console.WriteLine($"Float calculations: Sum: {sumFloat}, Difference: {differenceFloat}, Product: {productFloat}, Quotient: {quotientFloat}");
+        Console.WriteLine($"Double calculations: Sum: {sumDouble}, Difference: {differenceDouble}, Product: {productDouble}, Quotient: {quotientDouble}");
+    }
+}
 
