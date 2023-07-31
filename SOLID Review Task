@@ -1,0 +1,279 @@
+// S D
+
+public class MessageSender
+{
+    public void SendSMS(string message)
+    {      
+        SMSMessenger smsMessenger = new SMSMessenger();
+        smsMessenger.SendSMS(message);
+    }
+
+    public void SendEmail(string message, string recipient)
+    {       
+        EmailMessenger emailMessenger = new EmailMessenger();
+        emailMessenger.SendEmail(message, recipient);
+    }
+
+    public void SendMessageInMessenger(string message, string recipient, string messenger)
+    {      
+        Messenger messengerObj = new Messenger();
+        messengerObj.SendMessage(message, recipient, messenger);
+    }
+}
+
+public class SMSMessenger
+{
+    public void SendSMS(string message)
+    {
+        Console.WriteLine($"Sending SMS: {message}");
+    }
+}
+
+public class EmailMessenger
+{
+    public void SendEmail(string message, string recipient)
+    {
+        Console.WriteLine($"Sending email: {message} to {recipient}");
+    }
+}
+
+public class Messenger
+{
+    public void SendMessage(string message, string recipient, string messenger)
+    {
+        Console.WriteLine($"Sending message: {message} to {recipient} via {messenger}");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        MessageSender sender = new MessageSender();
+     
+        sender.SendSMS("Hello, this is an SMS.");
+   
+        sender.SendEmail("Hello, this is an email.", "example@example.com");
+    
+        sender.SendMessageInMessenger("Hello, this is a message.", "John", "WhatsApp");
+    }
+}
+
+
+// I 
+
+public interface IVehicle
+{
+    void Start();
+    void Stop();
+    void TurnOnEngine(); // Методы, связанные с двигателем, добавлены в общий интерфейс
+    void TurnOffEngine(); // Методы, связанные с двигателем, добавлены в общий интерфейс
+    void Pedal(); // Методы, связанные с неприводным транспортом, добавлены в общий интерфейс
+}
+
+
+public class Car : IVehicle
+{
+    public void Start()
+    {
+        Console.WriteLine("Car started.");
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine("Car stopped.");
+    }
+
+    public void TurnOnEngine()
+    {
+        Console.WriteLine("Engine turned on.");
+    }
+
+    public void TurnOffEngine()
+    {
+        Console.WriteLine("Engine turned off.");
+    }
+
+    public void Pedal()
+    {
+        // Пустая реализация, так как автомобиль с двигателем не педалируется
+    }
+}
+
+
+public class Truck : IVehicle
+{
+    public void Start()
+    {
+        Console.WriteLine("Truck started.");
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine("Truck stopped.");
+    }
+
+    public void TurnOnEngine()
+    {
+        Console.WriteLine("Engine turned on.");
+    }
+
+    public void TurnOffEngine()
+    {
+        Console.WriteLine("Engine turned off.");
+    }
+
+    public void Pedal()
+    {
+        Console.WriteLine("Truck is pedaling.");
+    }
+}
+
+
+public class Bicycle : IVehicle
+{
+    public void Start()
+    {
+        Console.WriteLine("Bicycle started.");
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine("Bicycle stopped.");
+    }
+
+    public void TurnOnEngine()
+    {
+        // Пустая реализация, так как велосипед без двигателя
+    }
+
+    public void TurnOffEngine()
+    {
+        // Пустая реализация, так как велосипед без двигателя
+    }
+
+    public void Pedal()
+    {
+        Console.WriteLine("Bicycle is pedaling.");
+    }
+}
+
+
+// О 
+// Плохой пример кода с нарушением принципа OCP
+
+public class Car
+{
+    public virtual void Start()
+    {
+        Console.WriteLine("Car started.");
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine("Car stopped.");
+    }
+
+    public void TurnOnEngine()
+    {
+        Console.WriteLine("Engine turned on.");
+    }
+
+    public void TurnOffEngine()
+    {
+        Console.WriteLine("Engine turned off.");
+    }
+}
+
+public class ElectricCar : Car
+{
+    public override void Start()
+    {
+        Console.WriteLine("Electric car started.");
+    }
+
+    public void ChargeBattery()
+    {
+        Console.WriteLine("Battery charging.");
+    }
+}
+
+// Класс, отвечающий за управление транспортными средствами
+public class TransportationManager
+{
+    public void StartVehicle(Car vehicle)
+    {
+        if (vehicle is ElectricCar)
+        {
+            ((ElectricCar)vehicle).ChargeBattery(); 
+        }
+
+        vehicle.Start();
+    }
+
+    public void StopVehicle(Car vehicle)
+    {
+        vehicle.Stop();
+    }
+}
+
+
+// О хороший код
+public abstract class Car
+{
+    public abstract void Start();
+
+    public void Stop()
+    {
+        Console.WriteLine("Car stopped.");
+    }
+
+    public void TurnOnEngine()
+    {
+        Console.WriteLine("Engine turned on.");
+    }
+
+    public void TurnOffEngine()
+    {
+        Console.WriteLine("Engine turned off.");
+    }
+}
+
+public class GasolineCar : Car
+{
+    public override void Start()
+    {
+        Console.WriteLine("Gasoline car started.");
+    }
+}
+
+public class ElectricCar : Car
+{
+    public override void Start()
+    {
+        Console.WriteLine("Electric car started.");
+    }
+
+    public void ChargeBattery()
+    {
+        Console.WriteLine("Battery charging.");
+    }
+}
+
+// Класс, отвечающий за управление транспортными средствами
+public class TransportationManager
+{
+    public void StartVehicle(Car vehicle)
+    {
+        vehicle.Start();
+    }
+
+    public void StopVehicle(Car vehicle)
+    {
+        vehicle.Stop();
+    }
+}
+
+
+
+
