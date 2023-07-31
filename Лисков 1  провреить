@@ -1,0 +1,209 @@
+public class Subscription
+{
+    public string Name { get; set; }
+    public double Price { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+
+    public virtual void Activate()
+    {
+        Console.WriteLine($"Subscription '{Name}' is activated.");
+    }
+
+    public virtual void Cancel()
+    {
+        Console.WriteLine($"Subscription '{Name}' is cancelled.");
+    }
+}
+
+public class ProductSubscription : Subscription
+{
+    public string ProductName { get; set; }
+    public int Quantity { get; set; }
+
+    public override void Activate()
+    {
+        Console.WriteLine($"Product subscription '{ProductName}' is activated.");
+    }
+
+    public override void Cancel()
+    {
+        Console.WriteLine($"Product subscription '{ProductName}' is cancelled.");
+    }
+}
+
+public class ServiceSubscription : Subscription
+{
+    public string ServiceName { get; set; }
+    public int DurationInMonths { get; set; }
+
+    public override void Activate()
+    {
+        Console.WriteLine($"Service subscription '{ServiceName}' is activated.");
+    }
+
+    public override void Cancel()
+    {
+        Console.WriteLine($"Service subscription '{ServiceName}' is cancelled.");
+    }
+}
+
+
+public class SubscriptionManager
+{
+    public void ActivateSubscription(Subscription subscription)
+    {
+        subscription.Activate();
+    }
+
+    public void CancelSubscription(Subscription subscription)
+    {
+        subscription.Cancel();
+    }
+}
+
+
+public void Main()
+{
+    SubscriptionManager subscriptionManager = new SubscriptionManager();
+
+    // Создаем объект подкласса ProductSubscription
+    ProductSubscription productSubscription = new ProductSubscription
+    {
+        Name = "Product Subscription",
+        ProductName = "Product A",
+        Quantity = 5,
+        Price = 50.0,
+        StartDate = DateTime.Now,
+        EndDate = DateTime.Now.AddMonths(6)
+    };
+
+    // Активируем подписку
+    subscriptionManager.ActivateSubscription(productSubscription); // Product subscription 'Product A' is activated.
+
+    // Создаем объект подкласса ServiceSubscription
+    ServiceSubscription serviceSubscription = new ServiceSubscription
+    {
+        Name = "Service Subscription",
+        ServiceName = "Service X",
+        DurationInMonths = 12,
+        Price = 100.0,
+        StartDate = DateTime.Now,
+        EndDate = DateTime.Now.AddMonths(12)
+    };
+
+    // Активируем подписку
+    subscriptionManager.ActivateSubscription(serviceSubscription); // Service subscription 'Service X' is activated.
+}
+
+
+
+
+
+
+
+
+
+
+public abstract class Subscription
+{
+    public string Name { get; set; }
+    public double Price { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+
+    public virtual void Activate()
+    {
+        Console.WriteLine($"Subscription '{Name}' is activated.");
+    }
+
+    public virtual void Cancel()
+    {
+        Console.WriteLine($"Subscription '{Name}' is cancelled.");
+    }
+}
+
+public class ProductSubscription : Subscription
+{
+    public string ProductName { get; set; }
+    public int Quantity { get; set; }
+
+    public override void Activate()
+    {
+        Console.WriteLine($"Product subscription '{ProductName}' is activated.");
+    }
+
+    public override void Cancel()
+    {
+        Console.WriteLine($"Product subscription '{ProductName}' is cancelled.");
+    }
+}
+
+public class ServiceSubscription : Subscription
+{
+    public string ServiceName { get; set; }
+    public int DurationInMonths { get; set; }
+
+    public override void Activate()
+    {
+        Console.WriteLine($"Service subscription '{ServiceName}' is activated.");
+    }
+
+    public override void Cancel()
+    {
+        Console.WriteLine($"Service subscription '{ServiceName}' is cancelled.");
+    }
+}
+
+public class SubscriptionManager
+{
+    public void ActivateSubscription(Subscription subscription)
+    {
+        subscription.Activate();
+    }
+
+    public void CancelSubscription(Subscription subscription)
+    {
+        subscription.Cancel();
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        SubscriptionManager subscriptionManager = new SubscriptionManager();
+
+        ProductSubscription productSubscription = new ProductSubscription
+        {
+            Name = "Product Subscription",
+            ProductName = "Product A",
+            Quantity = 5,
+            Price = 50.0,
+            StartDate = DateTime.Now,
+            EndDate = DateTime.Now.AddMonths(6)
+        };
+
+        subscriptionManager.ActivateSubscription(productSubscription); // Product subscription 'Product A' is activated.
+
+        ServiceSubscription serviceSubscription = new ServiceSubscription
+        {
+            Name = "Service Subscription",
+            ServiceName = "Service X",
+            DurationInMonths = 12,
+            Price = 100.0,
+            StartDate = DateTime.Now,
+            EndDate = DateTime.Now.AddMonths(12)
+        };
+
+        subscriptionManager.ActivateSubscription(serviceSubscription); // Service subscription 'Service X' is activated.
+    }
+}
+
+
+
+
+
+
+
+
