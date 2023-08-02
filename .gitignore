@@ -1,0 +1,109 @@
+# .NET build output
+bin/
+obj/
+
+# Visual Studio files
+*.suo
+*.user
+*.vspscc
+*.vssscc
+*.userprefs
+*.vscode
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+
+# Test Results
+[TestrR]esult*/
+[nN]bproject/
+[*.ipr]
+[*.iws]
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# TeamCity
+_TeamCity*
+
+# dotCover
+*.dotCover
+
+# Visual Studio code coverage
+*.coverage
+*.coveragexml
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject
+[Dd]oc[Ss]tyle.*
+[Dd]ocProject.*
+[Dd]ocProj.*
+
+# NuGet
+packages/
+*.nupkg
+*.pdb
+
+# RIA/Silverlight projects
+Generated_Code/
+
+# Backup & report files from converting an old project file
+Backup/
+UpgradeLog.htm
+*_UpgradeReport_Files/
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# Business Intelligence projects
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+
+# Microsoft Fakes
+FakesAssemblies/
+
+# GhostDoc plugin setting file
+*.GhostDoc.xml
+
+# Node.js Tools for Visual Studio
+.ntvs_analysis.dat
+
+# ReSharper Plugin Manager
+_ReSharper.*
+
+# Chocolatey packages
+*.nupkg
+*.old
+
+# ReSharper
+_ReSharper*/
+*.ReSharper.user
+
+# Visual Studio Code
+.vscode/
