@@ -20,7 +20,7 @@ namespace UnitTest_Task_1.Tests
         }
 
         [Fact]
-        public void CheckType_ShouldReturnTrue_WhenWorkItemTypeExists()
+        public void CheckType_ShouldReturnTrue_WhenWorkItemStatusExists()
         {
             // Arrange
             var workItemStatuses = new List<WorkItemStatus>
@@ -30,19 +30,20 @@ namespace UnitTest_Task_1.Tests
                 new WorkItemStatus { Name = "Closed" }
             };
 
-            mockExternalService.Setup(service => service.GetWorkItemStatuses()).Returns(workItemStatuses);
+            mockExternalService.Setup(service => service.GetWorkItemStatuses()).Returns(workItemStatuses).Verifiable();
 
-            var workItem = new WorkItem { Type = "Bug" };
+            var workItem = new WorkItem { Status = "Open" };
 
             // Act
             bool result = workItemService.CheckType(workItem);
 
             // Assert
             Assert.True(result);
+            mockExternalService.Verify();
         }
 
         [Fact]
-        public void CheckType_ShouldReturnFalse_WhenWorkItemTypeDoesNotExist()
+        public void CheckType_ShouldReturnFalse_WhenWorkItemStatusDoesNotExist()
         {
             // Arrange
             var workItemStatuses = new List<WorkItemStatus>
@@ -64,29 +65,30 @@ namespace UnitTest_Task_1.Tests
         }
 
         [Fact]
-        public void CheckStatus_ShouldReturnTrue_WhenWorkItemStatusExists()
+        public void CheckStatus_ShouldReturnTrue_WhenWorkItemTypesExists()
         {
             // Arrange
-            var workItemTypes = new List<WorkItemType>
+            // Arrange
+            var workItemStatuses = new List<WorkItemStatus>
             {
-                new WorkItemType { Name = "Bug" },
-                new WorkItemType { Name = "Task" },
-                new WorkItemType { Name = "Open" }
+                new WorkItemStatus { Name = "Open" },
+                new WorkItemStatus { Name = "In Progress" },
+                new WorkItemStatus { Name = "Closed" }
             };
 
-            mockExternalService.Setup(service => service.GetWorkItemTypes()).Returns(workItemTypes);
+            mockExternalService.Setup(service => service.GetWorkItemStatuses()).Returns(workItemStatuses);
 
-            var workItem = new WorkItem { Status = "Open" };
+            var workItem = new WorkItem { Status = "Task" };
 
             // Act
             bool result = workItemService.CheckStatus(workItem);
 
             // Assert
-            Assert.True(result);
+            Assert.False(result);
         }
 
         [Fact]
-        public void CheckStatus_ShouldReturnFalse_WhenWorkItemStatusDoesNotExist()
+        public void CheckStatus_ShouldReturnFalse_WhenWorkItemTypesDoesNotExist()
         {
             // Arrange
             var workItemTypes = new List<WorkItemType>
