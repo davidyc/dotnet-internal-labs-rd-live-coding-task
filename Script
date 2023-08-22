@@ -1,0 +1,84 @@
+-- Создание базы данных, если её нет
+CREATE DATABASE IF NOT EXISTS mydatabase;
+USE mydatabase;
+
+-- Создание таблицы "Пользователи"
+CREATE TABLE IF NOT EXISTS Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100) UNIQUE,
+    Password VARCHAR(100)
+);
+
+-- Создание таблицы "Адреса"
+CREATE TABLE IF NOT EXISTS Addresses (
+    AddressID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
+    StreetAddress VARCHAR(100),
+    City VARCHAR(50),
+    State VARCHAR(50),
+    PostalCode VARCHAR(20),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+-- Создание таблицы "Заказы"
+CREATE TABLE IF NOT EXISTS Orders (
+    OrderID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
+    OrderDate DATE,
+    TotalAmount DECIMAL(10, 2),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+-- Создание таблицы "Товары"
+CREATE TABLE IF NOT EXISTS Products (
+    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    Price DECIMAL(10, 2)
+);
+
+-- Создание таблицы "Содержимое заказов"
+CREATE TABLE IF NOT EXISTS OrderItems (
+    OrderItemID INT AUTO_INCREMENT PRIMARY KEY,
+    OrderID INT,
+    ProductID INT,
+    Quantity INT,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+
+-- Вставка данных в таблицу "Пользователи"
+INSERT INTO Users (FirstName, LastName, Email, Password)
+VALUES
+    ('Иван', 'Иванов', 'ivan@example.com', 'password1'),
+    ('Мария', 'Петрова', 'maria@example.com', 'password2'),
+    ('Алексей', 'Сидоров', 'alex@example.com', 'password3');
+
+-- Вставка данных в таблицу "Адреса"
+INSERT INTO Addresses (UserID, StreetAddress, City, State, PostalCode)
+VALUES
+    (1, 'ул. Ленина, 123', 'Москва', 'Московская область', '12345'),
+    (2, 'ул. Пушкина, 456', 'Санкт-Петербург', 'Ленинградская область', '54321');
+
+-- Вставка данных в таблицу "Товары"
+INSERT INTO Products (ProductName, Price)
+VALUES
+    ('Ноутбук', 999.99),
+    ('Смартфон', 499.99),
+    ('Планшет', 299.99);
+
+-- Вставка данных в таблицу "Заказы"
+INSERT INTO Orders (UserID, OrderDate, TotalAmount)
+VALUES
+    (1, '2023-08-22', 1299.98),
+    (2, '2023-08-23', 799.98);
+
+-- Вставка данных в таблицу "Содержимое заказов"
+INSERT INTO OrderItems (OrderID, ProductID, Quantity)
+VALUES
+    (1, 1, 1),
+    (1, 2, 2),
+    (2, 2, 1),
+    (2, 3, 3);
